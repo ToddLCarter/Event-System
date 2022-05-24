@@ -1,4 +1,4 @@
-# Event-System
+# Event-System [![](https://jitpack.io/v/ToddLCarter/Event-System.svg)](https://jitpack.io/#ToddLCarter/Event-System)
 A Thread Safe Event System
 
 ## Installation
