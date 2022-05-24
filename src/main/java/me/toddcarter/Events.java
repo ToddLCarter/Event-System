@@ -5,8 +5,8 @@ import me.toddcarter.event.EventPriority;
 import me.toddcarter.eventbus.EventBus;
 import me.toddcarter.subscription.Subscription;
 import me.toddcarter.subscription.SubscriptionBuilder;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 
 public final class Events {
@@ -38,7 +38,7 @@ public final class Events {
      *
      * @param event the event to call
      */
-    public static void callAsync(@Nonnull Event event) {
+    public static void callAsync(@NotNull Event event) {
         CompletableFuture.runAsync(() -> eventBus.call(event, true));
     }
 
@@ -47,7 +47,7 @@ public final class Events {
      *
      * @param event the event to call
      */
-    public static void callSync(@Nonnull Event event) {
+    public static void callSync(@NotNull Event event) {
         eventBus.call(event, false);
     }
 
@@ -56,7 +56,7 @@ public final class Events {
      *
      * @param listener the listener to register
      */
-    public static <T extends Event> void registerListener(@Nonnull Subscription<T> listener) {
+    public static <T extends Event> void registerListener(@NotNull Subscription<T> listener) {
         eventBus.registerListener(listener);
     }
 
@@ -65,7 +65,7 @@ public final class Events {
      *
      * @param listener the listener to unregister
      */
-    public static <T extends Event> void unregisterListener(@Nonnull Subscription<T> listener) {
+    public static <T extends Event> void unregisterListener(@NotNull Subscription<T> listener) {
         eventBus.unregisterListener(listener);
     }
 }

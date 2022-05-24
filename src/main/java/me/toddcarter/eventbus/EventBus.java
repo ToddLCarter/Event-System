@@ -3,8 +3,8 @@ package me.toddcarter.eventbus;
 import me.toddcarter.event.Event;
 import me.toddcarter.event.HandlerList;
 import me.toddcarter.subscription.Subscription;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -17,7 +17,7 @@ public final class EventBus {
      * @param subscription the listener to register
      *
      */
-    public void registerListener(@Nonnull Subscription<? extends Event> subscription) {
+    public void registerListener(@NotNull Subscription<? extends Event> subscription) {
         try {
             final Class<? extends Event> eventClass = subscription.getEventClass().asSubclass(Event.class);
             Method method = eventClass.getDeclaredMethod("getHandlerList");
@@ -35,7 +35,7 @@ public final class EventBus {
      * @param subscription the listener to unregister
      *
      */
-    public void unregisterListener(@Nonnull Subscription<? extends Event> subscription) {
+    public void unregisterListener(@NotNull Subscription<? extends Event> subscription) {
         try {
             final Class<? extends Event> eventClass = subscription.getEventClass().asSubclass(Event.class);
             Method method = eventClass.getDeclaredMethod("getHandlerList");
@@ -54,7 +54,7 @@ public final class EventBus {
      * @param event the event to post
      *
      */
-    public void call(@Nonnull Event event, boolean async) {
+    public void call(@NotNull Event event, boolean async) {
         if(async) {
             if (Thread.holdsLock(this)) {
                 throw new IllegalStateException("Cannot fire event from within synchronized block");

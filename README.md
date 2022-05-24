@@ -1,6 +1,34 @@
 # Event-System
 A Thread Safe Event System
 
+## Installation
+Maven:
+```xml
+<repository>
+    <id>jitpack.io</id>
+    <url>https://jitpack.io</url>
+</repository>
+
+<dependency>
+    <groupId>com.github.ToddLCarter</groupId>
+    <artifactId>Event-System</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
+Gradle:
+```groovy
+repositories {
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    implementation 'com.github.ToddLCarter:Event-System:1.0.1'
+}
+```
+
+## Building
+You can build the project by running `./gradlew build`
+
 # Usage
 
 ## Creating a new Event
@@ -119,7 +147,7 @@ You can apply an indefinite amount of filters to your listeners using lambda exp
 ```
 Events.subscribe(ExampleEvent.class)
     .filter(e -> e.getString().equalsIgnoreCase("Event Call"))
-    .filter(e -> e.getOwnerName().equalsIgnoreCase("Swervv"))
+    .filter(e -> e.getOwnerName().equalsIgnoreCase("Lora"))
     .handler(e ->  System.out.println(e.getString()));
 ```
 

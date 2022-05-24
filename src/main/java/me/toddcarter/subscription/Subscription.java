@@ -3,8 +3,8 @@ package me.toddcarter.subscription;
 import me.toddcarter.Events;
 import me.toddcarter.event.Event;
 import me.toddcarter.event.EventPriority;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
@@ -75,7 +75,7 @@ public class Subscription<T extends Event> {
         }
     }
 
-    @Nonnull
+    @NotNull
     public final Class<? extends Event> getEventClass() {
         return this.eventClass;
     }

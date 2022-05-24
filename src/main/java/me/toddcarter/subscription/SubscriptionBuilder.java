@@ -4,7 +4,6 @@ import me.toddcarter.Events;
 import me.toddcarter.event.Cancellable;
 import me.toddcarter.event.Event;
 import me.toddcarter.event.EventPriority;
-import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +83,9 @@ public class SubscriptionBuilder<T extends Event> {
      */
     public SubscriptionBuilder<T> expireAfter(Integer maxCalls) {
         Objects.requireNonNull(maxCalls, "maxCalls");
-        Preconditions.checkArgument(maxCalls >= 1, "maxCalls < 1");
+        if(maxCalls < 1) {
+            throw new IllegalArgumentException("maxCalls < 1");
+        }
         return expireIf(subscription -> subscription.getCallCounter() >= maxCalls);
     }
 
@@ -98,7 +99,9 @@ public class SubscriptionBuilder<T extends Event> {
         Objects.requireNonNull(time, "time");
         Objects.requireNonNull(timeUnit, "timeUnit");
         Objects.requireNonNull(timeUnit, "timeUnit");
-        Preconditions.checkArgument(time >= 1, "time < 1");
+        if(time < 1) {
+            throw new IllegalArgumentException("time < 1");
+        }
         long expiry = timeUnit.toMillis(time) + System.currentTimeMillis();
         return expireIf(subscription -> expiry < subscription.getRegisterTime());
     }
